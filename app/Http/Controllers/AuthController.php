@@ -10,6 +10,15 @@ use Illuminate\Support\Facades\Log;
 final class AuthController extends Controller
 {
 
+  public function user(Request $request)
+  {
+    $user = Auth::user();
+    if ($user == null) {
+      return response(null, 401);
+    }
+    return response($user);
+  }
+
   public function login(Request $request)
   {
     $credentials = $request->validate([
